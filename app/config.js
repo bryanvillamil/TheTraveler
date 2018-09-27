@@ -1,22 +1,10 @@
-const API_URL = 'https://jsonplaceholder.typicode.com'
-const PEOPLE_URL = '/users'
-
-const user = `${API_URL}${PEOPLE_URL}`
-
-const opts = { crossDomain: true }
-
-
-console.log(user);
+let config = {
+  apiUrl: 'https://jsonplaceholder.typicode.com'
+}
 
 
 const exportConfig = config;
 export default exportConfig;
-
-
-
-
-
-
 
 
 

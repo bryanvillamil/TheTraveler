@@ -1,6 +1,8 @@
 import 'whatwg-fetch';
 import config from '../config';
 
+console.log(config);
+
 /**
  * Requests a URL, returning a promise
  *
@@ -9,6 +11,7 @@ import config from '../config';
  *
  * @return {object}           The response data
  */
+
 export default function request(url, options) {
   const requestParams = {
     headers: {
