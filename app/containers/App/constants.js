@@ -9,6 +9,9 @@
  * export const YOUR_ACTION_CONSTANT = 'yourproject/YourContainer/YOUR_ACTION_CONSTANT';
  */
 
-export const LOAD_REPOS = 'boilerplate/App/LOAD_REPOS';
-export const LOAD_REPOS_SUCCESS = 'boilerplate/App/LOAD_REPOS_SUCCESS';
-export const LOAD_REPOS_ERROR = 'boilerplate/App/LOAD_REPOS_ERROR';
+export const REQUESTING_API = 'app/App/REQUESTING_API';
+export const API_RESPONSE_SUCCESS = 'app/App/API_RESPONSE_SUCCESS';
+export const API_RESPONSE_FAILED = 'app/App/API_RESPONSE_FAILED';
+export const LOAD_REPOS = 'app/App/LOAD_REPOS';
+export const LOAD_REPOS_SUCCESS = 'app/App/LOAD_REPOS_SUCCESS';
+export const LOAD_REPOS_ERROR = 'app/App/LOAD_REPOS_ERROR';

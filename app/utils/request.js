@@ -1,8 +1,6 @@
 import 'whatwg-fetch';
 import config from '../config';
 
-console.log(config);
-
 /**
  * Requests a URL, returning a promise
  *
@@ -17,18 +15,20 @@ export default function request(url, options) {
     headers: {
       'Content-Type': 'application/json',
     },
-    method: (options && options.method) ? options.method : 'GET',
-    body: (options && options.body) ? JSON.stringify(options.body) : null,
+    method: options && options.method ? options.method : 'GET',
+    body: options && options.body ? JSON.stringify(options.body) : null,
   };
   if (options && options.token) {
     requestParams.headers.Authorization = `Bearer ${options.token}`;
   }
   const endPoint = `${config.apiUrl}${url}`; //eslint-disable-line
   return fetch(endPoint, requestParams)
-    .then((response) => response.json())
-    .then((responseJson) => responseJson)
-    .catch((error) => {
-      const customError = new Error(`Hay problemas de comunicación con el API. [${error.message}]`);
+    .then(response => response.json())
+    .then(responseJson => responseJson)
+    .catch(error => {
+      const customError = new Error(
+        `Hay problemas de comunicación con el API. [${error.message}]`,
+      );
       throw customError;
     });
 }
