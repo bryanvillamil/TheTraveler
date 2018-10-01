@@ -8,7 +8,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
-import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
@@ -17,9 +16,10 @@ import injectReducer from 'utils/injectReducer';
 import makeSelectListUsers from './selectors';
 import reducer from './reducer';
 import saga from './saga';
-import messages from './messages';
 import User from './UserItem';
 import { getTable } from './actions';
+
+import { ContentUsers } from './styledComponents';
 
 /* eslint-disable react/prefer-stateless-function */
 export class ListUsers extends React.PureComponent {
@@ -43,20 +43,21 @@ export class ListUsers extends React.PureComponent {
     return (
       <div>
         <Helmet>
-          <title>ListUsers</title>
+          <title>List Users</title>
           <meta name="description" content="Description of ListUsers" />
         </Helmet>
-        <FormattedMessage {...messages.header} />
         <h2>Lista de usuario API</h2>
 
-        {data &&
-          data.map(user => (
-            <User
-              key={user.id}
-              {...user}
-              handleRowClick={this.handleRowClick}
-            />
-          ))}
+        <ContentUsers>
+          {data &&
+            data.map(user => (
+              <User
+                key={user.id}
+                {...user}
+                handleRowClick={this.handleRowClick}
+              />
+            ))}
+        </ContentUsers>
       </div>
     );
   }
