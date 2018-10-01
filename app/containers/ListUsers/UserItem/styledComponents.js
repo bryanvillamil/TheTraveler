@@ -9,7 +9,7 @@ export const BoxUser = styled.div`
   margin-bottom: 40px;
   padding: 10px 0;
   background: #f2f2f2;
-  border-radius: 2px;
+  border-radius: 4px;
   cursor: pointer;
   transition: all 0.5s;
   &:hover {

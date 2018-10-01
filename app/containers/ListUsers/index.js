@@ -19,6 +19,7 @@ import makeSelectListUsers from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import User from './UserItem';
+import Search from './SearchUser';
 import { getTable } from './actions';
 
 import { ContentUsers } from './styledComponents';
@@ -51,6 +52,9 @@ export class ListUsers extends React.PureComponent {
         <Header />
         <Container>
           <h2>Lista de usuario</h2>
+
+          <Search />
+
           <ContentUsers>
             {data &&
               data.map(user => (
