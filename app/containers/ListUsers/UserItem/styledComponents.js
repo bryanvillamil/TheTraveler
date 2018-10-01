@@ -7,9 +7,17 @@ export const BoxUser = styled.div`
   justify-content: flex-start;
   width: 100%;
   margin-bottom: 40px;
-  padding: 10px;
+  padding: 10px 0;
+  background: #f2f2f2;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all 0.5s;
+  &:hover {
+    transform: scale(1.1);
+  }
   .folder {
-    width: 100px;
+    width: 80px;
+    margin-right: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -34,8 +42,7 @@ export const BoxUser = styled.div`
     }
   }
   ${breakpoint('tablet')`
-    text-align: initial;
-    padding-bottom: 0;
+    padding: 10px;
   `};
 `;
 
@@ -48,4 +55,8 @@ export const User = styled.div`
 export const Span = styled.span`
   display: flex;
   flex-direction: column;
+  font-size: 14px;
+  ${breakpoint('tablet')`
+    font-size: 16px;
+  `};
 `;

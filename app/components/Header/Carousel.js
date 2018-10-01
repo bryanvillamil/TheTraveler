@@ -7,7 +7,12 @@ import Banner3 from './imgCarousel/carousel3.jpg';
 import Banner4 from './imgCarousel/carousel4.jpg';
 
 export default () => (
-  <Carousel autoPlay showThumbs={false} showIndicators={false}>
+  <Carousel
+    autoPlay
+    showThumbs={false}
+    showIndicators={false}
+    showStatus={false}
+  >
     <div className="contentImg">
       <Img src={Banner1} alt="carousel 1" />
     </div>

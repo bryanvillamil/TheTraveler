@@ -10,6 +10,8 @@ import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
+import Container from 'components/Container';
+import Header from 'components/Header';
 
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
@@ -46,18 +48,20 @@ export class ListUsers extends React.PureComponent {
           <title>List Users</title>
           <meta name="description" content="Description of ListUsers" />
         </Helmet>
-        <h2>Lista de usuario API</h2>
-
-        <ContentUsers>
-          {data &&
-            data.map(user => (
-              <User
-                key={user.id}
-                {...user}
-                handleRowClick={this.handleRowClick}
-              />
-            ))}
-        </ContentUsers>
+        <Header />
+        <Container>
+          <h2>Lista de usuario</h2>
+          <ContentUsers>
+            {data &&
+              data.map(user => (
+                <User
+                  key={user.id}
+                  {...user}
+                  handleRowClick={this.handleRowClick}
+                />
+              ))}
+          </ContentUsers>
+        </Container>
       </div>
     );
   }
