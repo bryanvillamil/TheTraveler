@@ -54,8 +54,6 @@ export class ListUsers extends React.PureComponent {
       listusers: { data },
     } = this.props;
 
-    console.log(this.props);
-
     // if (!data) return null
 
     return (

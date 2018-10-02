@@ -72,8 +72,6 @@ export class AlbumsUser extends React.PureComponent {
       albumsuser: { data },
     } = this.props;
 
-    console.log(this.props);
-
     return (
       <Container>
         <Helmet>

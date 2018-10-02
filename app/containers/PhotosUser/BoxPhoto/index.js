@@ -5,20 +5,37 @@
  */
 
 import React from 'react';
-// import PropTypes from 'prop-types';
-// import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
-import { FormattedMessage } from 'react-intl';
-import messages from './messages';
+import Img from 'components/Img';
+import Icons from 'components/Icons';
+import { Box } from './styledComponents';
 
-function BoxPhoto() {
+function BoxPhoto(props) {
+  const { title, url } = props;
+
   return (
-    <div>
-      <FormattedMessage {...messages.header} />
-    </div>
+    <Box>
+      <div className="boxPhoto">
+        <div className="boxPhoto__image">
+          <Img src={url} alt={title} />
+        </div>
+        <div className="boxPhoto__desc">
+          <Icons
+            iconName="plus"
+            height="40"
+            width="40"
+            backgroundColor="#fff"
+          />
+        </div>
+      </div>
+    </Box>
   );
 }
 
-BoxPhoto.propTypes = {};
+BoxPhoto.propTypes = {
+  title: PropTypes.string,
+  url: PropTypes.string,
+};
 
 export default BoxPhoto;

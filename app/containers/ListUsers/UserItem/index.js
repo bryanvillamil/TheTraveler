@@ -36,7 +36,12 @@ function UserItem(props) {
         <Span>{email}</Span>
       </User>
       <button className="info" onClick={ClickModalInfo}>
-        <Icons iconName="info" backgroundColor="red" height="30" width="30" />
+        <Icons
+          iconName="info"
+          backgroundColor="#4BBCDE"
+          height="30"
+          width="30"
+        />
       </button>
     </BoxUser>
   );

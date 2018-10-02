@@ -20,6 +20,8 @@ import reducer from './reducer';
 import saga from './saga';
 import { getPhoto } from './actions';
 
+import { ContentPhotos } from './styledComponents';
+
 /* eslint-disable react/prefer-stateless-function */
 export class PhotosUser extends React.PureComponent {
   componentDidMount() {
@@ -36,16 +38,15 @@ export class PhotosUser extends React.PureComponent {
     const {
       photosuser: { photos },
     } = this.props;
-    console.log(this.props);
 
     return (
-      <div>
+      <ContentPhotos>
         <Helmet>
-          <title>PhotosUser</title>
-          <meta name="description" content="Description of PhotosUser" />
+          <title>Photos User</title>
         </Helmet>
+
         {photos && photos.map(photo => <Box key={photo.id} {...photo} />)}
-      </div>
+      </ContentPhotos>
     );
   }
 }
