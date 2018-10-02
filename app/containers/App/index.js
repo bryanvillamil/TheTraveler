@@ -12,8 +12,10 @@ import { Helmet } from 'react-helmet';
 import { Switch, Route } from 'react-router-dom';
 
 // import HomePage from 'containers/HomePage/Loadable';
-import FeaturePage from 'containers/FeaturePage/Loadable';
 import ListUsers from 'containers/ListUsers/Loadable';
+import AlbumsUser from 'containers/AlbumsUser/Loadable';
+import PhotosUser from 'containers/PhotosUser/Loadable';
+
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 
 export default function App() {
@@ -31,7 +33,8 @@ export default function App() {
         </Helmet>
         <Switch>
           <Route exact path="/" component={ListUsers} />
-          <Route path="/features" component={FeaturePage} />
+          <Route path="/:id/albums" component={AlbumsUser} />
+          <Route path="/:id/photos" component={PhotosUser} />
           <Route path="" component={NotFoundPage} />
         </Switch>
       </div>

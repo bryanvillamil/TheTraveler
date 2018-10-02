@@ -6,7 +6,6 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-// import styled from 'styled-components';
 import Icons from 'components/Icons';
 // import swal from 'sweetalert';
 
@@ -14,30 +13,31 @@ import { BoxUser, User, Span } from './styledComponents';
 
 function UserItem(props) {
   // se debe pasar los props como parametro (props)
-  const { name, email, handleRowClick, id } = props;
+
+  const { name, email, handleRedirectAlbums, id } = props;
 
   const rowClick = () => {
-    handleRowClick(id);
+    handleRedirectAlbums(id);
   };
 
-  // const ClickModalInfo = () => {
-  //   console.log('hello');
-  // };
+  const ClickModalInfo = () => {
+    console.log(`hola ${id} ${name}`);
+  };
 
   return (
-    <BoxUser onClick={rowClick}>
+    <BoxUser>
       <div className="folder">
         <div className="contentIcon">
           <Icons iconName="folder" height="40" width="40" />
         </div>
       </div>
-      <User>
+      <User onClick={rowClick}>
         <Span>{name}</Span>
         <Span>{email}</Span>
       </User>
-      <div className="info">
+      <button className="info" onClick={ClickModalInfo}>
         <Icons iconName="info" backgroundColor="red" height="30" width="30" />
-      </div>
+      </button>
     </BoxUser>
   );
 }
@@ -45,7 +45,7 @@ function UserItem(props) {
 UserItem.propTypes = {
   name: PropTypes.string,
   email: PropTypes.string,
-  handleRowClick: PropTypes.func,
+  handleRedirectAlbums: PropTypes.func,
   id: PropTypes.number,
 };
 

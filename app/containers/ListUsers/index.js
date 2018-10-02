@@ -12,6 +12,7 @@ import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import Container from 'components/Container';
 import Header from 'components/Header';
+import { findIndex } from 'lodash';
 
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
@@ -33,14 +34,27 @@ export class ListUsers extends React.PureComponent {
     getTableData();
   }
 
-  handleRowClick = id => {
-    console.log(id);
+  handleRedirectAlbums = id => {
+    const {
+      history: { push },
+      listusers: { data },
+    } = this.props;
+
+    const userId = findIndex(data, { id });
+    if (userId !== -1) {
+      const Username = data[userId].name;
+      push(`${id}/albums`, {
+        Username,
+      });
+    }
   };
 
   render() {
     const {
       listusers: { data },
     } = this.props;
+
+    console.log(this.props);
 
     // if (!data) return null
 
@@ -63,7 +77,7 @@ export class ListUsers extends React.PureComponent {
                 <User
                   key={user.id}
                   {...user}
-                  handleRowClick={this.handleRowClick}
+                  handleRedirectAlbums={this.handleRedirectAlbums}
                 />
               ))}
           </ContentUsers>
@@ -78,6 +92,7 @@ ListUsers.propTypes = {
   dispatch: PropTypes.func.isRequired,
   getTableData: PropTypes.func.isRequired,
   listusers: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
