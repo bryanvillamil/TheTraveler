@@ -8,6 +8,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 // import styled from 'styled-components';
 import Icons from 'components/Icons';
+// import swal from 'sweetalert';
 
 import { BoxUser, User, Span } from './styledComponents';
 
@@ -18,6 +19,10 @@ function UserItem(props) {
   const rowClick = () => {
     handleRowClick(id);
   };
+
+  // const ClickModalInfo = () => {
+  //   console.log('hello');
+  // };
 
   return (
     <BoxUser onClick={rowClick}>

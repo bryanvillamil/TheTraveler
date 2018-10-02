@@ -20,6 +20,8 @@ import reducer from './reducer';
 import saga from './saga';
 import User from './UserItem';
 import Search from './SearchUser';
+import Date from './Date';
+import Modal from './Modal';
 import { getTable } from './actions';
 
 import { ContentUsers } from './styledComponents';
@@ -39,7 +41,6 @@ export class ListUsers extends React.PureComponent {
     const {
       listusers: { data },
     } = this.props;
-    console.log(this.props);
 
     // if (!data) return null
 
@@ -54,6 +55,7 @@ export class ListUsers extends React.PureComponent {
           <h2>Lista de usuario</h2>
 
           <Search />
+          <Date />
 
           <ContentUsers>
             {data &&
@@ -66,6 +68,7 @@ export class ListUsers extends React.PureComponent {
               ))}
           </ContentUsers>
         </Container>
+        <Modal />
       </div>
     );
   }
