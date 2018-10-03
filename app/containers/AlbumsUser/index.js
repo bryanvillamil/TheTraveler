@@ -12,6 +12,8 @@ import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import { findIndex } from 'lodash';
 
+import TitlePage from 'components/TitlePage';
+
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
 import Box from './BoxAlbum';
@@ -20,7 +22,7 @@ import reducer from './reducer';
 import saga from './saga';
 import { getInfo } from './actions';
 
-import { ContentAlbums, Title, Container } from './styledComponents';
+import { ContentAlbums, Container } from './styledComponents';
 
 /* eslint-disable react/prefer-stateless-function */
 export class AlbumsUser extends React.PureComponent {
@@ -77,9 +79,9 @@ export class AlbumsUser extends React.PureComponent {
         <Helmet>
           <title>{`Album ${Username}`}</title>
         </Helmet>
-        <Title>
-          <h2>{`Photo album of ${Username}`}</h2>
-        </Title>
+
+        <TitlePage title={`Photo album of ${Username}`} />
+
         <ContentAlbums>
           {data &&
             data.map(album => (

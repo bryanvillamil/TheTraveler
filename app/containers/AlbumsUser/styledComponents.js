@@ -1,12 +1,6 @@
 import styled from 'styled-components';
 // import breakpoint from 'styled-components-breakpoint';
 
-export const Title = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
 export const ContentAlbums = styled.div`
   background: #777;
   display: flex;

@@ -13,6 +13,7 @@ import { compose } from 'redux';
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
 
+import TitlePage from 'components/TitlePage';
 import Box from './BoxPhoto';
 
 import makeSelectPhotosUser from './selectors';
@@ -40,13 +41,16 @@ export class PhotosUser extends React.PureComponent {
     } = this.props;
 
     return (
-      <ContentPhotos>
+      <div>
         <Helmet>
           <title>Photos User</title>
         </Helmet>
 
-        {photos && photos.map(photo => <Box key={photo.id} {...photo} />)}
-      </ContentPhotos>
+        <TitlePage title="Photos" />
+        <ContentPhotos>
+          {photos && photos.map(photo => <Box key={photo.id} {...photo} />)}
+        </ContentPhotos>
+      </div>
     );
   }
 }
