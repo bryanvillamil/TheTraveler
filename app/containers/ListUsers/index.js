@@ -19,7 +19,7 @@ import injectReducer from 'utils/injectReducer';
 import makeSelectListUsers from './selectors';
 import reducer from './reducer';
 import saga from './saga';
-import User from './UserItem';
+import User from './ItemUser';
 import Search from './SearchUser';
 import Date from './Date';
 import Modal from './Modal';
@@ -29,10 +29,27 @@ import { ContentUsers } from './styledComponents';
 
 /* eslint-disable react/prefer-stateless-function */
 export class ListUsers extends React.PureComponent {
+  state = {
+    isOpen: false,
+    idSelected: '',
+  };
+
   componentDidMount() {
     const { getTableData } = this.props;
     getTableData();
   }
+
+  toggleModal = id => {
+    this.setState({
+      isOpen: !this.state.isOpen,
+      idSelected: id,
+    });
+    // const {
+    //   listusers: { data },
+    // } = this.props;
+
+    // if (this.state.idSelected) data = findIndex(data, { id: this.state.idSelected })
+  };
 
   handleRedirectAlbums = id => {
     const {
@@ -54,7 +71,7 @@ export class ListUsers extends React.PureComponent {
       listusers: { data },
     } = this.props;
 
-    // if (!data) return null
+    if (!data) return null;
 
     return (
       <div>
@@ -70,17 +87,24 @@ export class ListUsers extends React.PureComponent {
           <Date />
 
           <ContentUsers>
-            {data &&
-              data.map(user => (
-                <User
-                  key={user.id}
-                  {...user}
-                  handleRedirectAlbums={this.handleRedirectAlbums}
-                />
-              ))}
+            {data.map(user => (
+              <User
+                key={user.id}
+                {...user}
+                handleRedirectAlbums={this.handleRedirectAlbums}
+                toggleModal={this.toggleModal}
+              />
+            ))}
           </ContentUsers>
         </Container>
-        <Modal />
+
+        {this.state.idSelected && (
+          <Modal
+            show={this.state.isOpen}
+            onClose={this.toggleModal}
+            data={data}
+          />
+        )}
       </div>
     );
   }
@@ -91,6 +115,7 @@ ListUsers.propTypes = {
   getTableData: PropTypes.func.isRequired,
   listusers: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
+  infoModal: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({

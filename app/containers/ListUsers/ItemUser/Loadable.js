@@ -1,6 +1,6 @@
 /**
  *
- * Asynchronously loads the component for UserItem
+ * Asynchronously loads the component for ItemUser
  *
  */
 

@@ -1,9 +1,9 @@
 // import React from 'react';
 // import { shallow } from 'enzyme';
 
-// import UserItem from '../index';
+// import ItemUser from '../index';
 
-describe('<UserItem />', () => {
+describe('<ItemUser />', () => {
   it('Expect to have unit tests specified', () => {
     expect(true).toEqual(false);
   });
