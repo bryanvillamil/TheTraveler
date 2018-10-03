@@ -37,7 +37,7 @@ class ItemUser extends React.Component {
         <button className="info" onClick={this.ClickModalInfo}>
           <Icons
             iconName="info"
-            backgroundColor="#4BBCDE"
+            backgroundColor="#000"
             height="30"
             width="30"
           />

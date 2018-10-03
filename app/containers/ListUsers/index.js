@@ -25,7 +25,7 @@ import Date from './Date';
 import Modal from './Modal';
 import { getTable } from './actions';
 
-import { ContentUsers } from './styledComponents';
+import { ContentUsers, TitleHome } from './styledComponents';
 
 /* eslint-disable react/prefer-stateless-function */
 export class ListUsers extends React.PureComponent {
@@ -81,7 +81,11 @@ export class ListUsers extends React.PureComponent {
         </Helmet>
         <Header />
         <Container>
-          <h2>Lista de usuario</h2>
+          <TitleHome>
+            <h2 className="link link--kukuri" data-letters="The Traveler">
+              The Traveler
+            </h2>
+          </TitleHome>
 
           <Search />
           <Date />
