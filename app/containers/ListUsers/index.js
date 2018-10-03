@@ -12,6 +12,7 @@ import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import Container from 'components/Container';
 import Header from 'components/Header';
+import TitlePage from 'components/TitlePage';
 import { findIndex } from 'lodash';
 
 import injectSaga from 'utils/injectSaga';
@@ -25,7 +26,7 @@ import Date from './Date';
 import Modal from './Modal';
 import { getTable } from './actions';
 
-import { ContentUsers, TitleHome } from './styledComponents';
+import { ContentUsers } from './styledComponents';
 
 /* eslint-disable react/prefer-stateless-function */
 export class ListUsers extends React.PureComponent {
@@ -81,11 +82,7 @@ export class ListUsers extends React.PureComponent {
         </Helmet>
         <Header />
         <Container>
-          <TitleHome>
-            <h2 className="link link--kukuri" data-letters="The Traveler">
-              The Traveler
-            </h2>
-          </TitleHome>
+          <TitlePage />
 
           <Search />
           <Date />

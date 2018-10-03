@@ -77,6 +77,9 @@ export const BoxUser = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    &:focus {
+      outline: none;
+    }
     svg {
       cursor: pointer;
       transition: all 0.5s;
