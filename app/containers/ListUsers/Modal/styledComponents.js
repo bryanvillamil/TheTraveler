@@ -22,4 +22,24 @@ export const ModalStyle = styled.div`
   min-height: 300px;
   margin: 0 auto;
   padding: 30px;
+  position: relative;
+  .cerrar {
+    position: absolute;
+    right: 4%;
+    top: 6%;
+    button {
+      &:focus {
+        outline: none;
+      }
+      svg {
+        transition: all 0.5s;
+        cursor: pointer;
+      }
+      &:hover {
+        svg {
+          transform: scale(1.1);
+        }
+      }
+    }
+  }
 `;

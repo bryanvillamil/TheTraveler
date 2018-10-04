@@ -15,7 +15,7 @@ class ItemUser extends React.Component {
   ClickModalInfo = () => {
     const { id, name, toggleModal } = this.props;
 
-    toggleModal();
+    toggleModal(id);
 
     console.log(`hola ${id} ${name}`);
   };

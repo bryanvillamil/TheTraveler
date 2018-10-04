@@ -10,13 +10,16 @@ export const TitleHome = styled.div`
     outline: none;
     text-decoration: none;
     position: relative;
-    font-size: 2em;
+    font-size: 2rem;
     line-height: 1;
     color: #9e9ba4;
     display: inline-block;
     cursor: pointer;
+    ${breakpoint('tablet')`
+      font-size: 3.2rem;
+    `};
     ${breakpoint('desktop')`
-      font-size: 3.5em;
+      font-size: 4rem;
     `};
     /* Kukuri */
     &--kukuri {

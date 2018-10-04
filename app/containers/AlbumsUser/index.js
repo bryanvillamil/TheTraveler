@@ -80,7 +80,7 @@ export class AlbumsUser extends React.PureComponent {
           <title>{`Album ${Username}`}</title>
         </Helmet>
 
-        <TitlePage title={`Photo album of ${Username}`} />
+        <TitlePage title={`album of ${Username}`} />
 
         <ContentAlbums>
           {data &&

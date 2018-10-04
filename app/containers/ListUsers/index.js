@@ -20,13 +20,13 @@ import injectReducer from 'utils/injectReducer';
 import makeSelectListUsers from './selectors';
 import reducer from './reducer';
 import saga from './saga';
-import User from './ItemUser';
+// import User from './ItemUser';
 import Search from './SearchUser';
 import Date from './Date';
 import Modal from './Modal';
 import { getTable } from './actions';
 
-import { ContentUsers } from './styledComponents';
+import { ContentUsers, HeaderTop } from './styledComponents';
 
 /* eslint-disable react/prefer-stateless-function */
 export class ListUsers extends React.PureComponent {
@@ -45,11 +45,20 @@ export class ListUsers extends React.PureComponent {
       isOpen: !this.state.isOpen,
       idSelected: id,
     });
-    // const {
-    //   listusers: { data },
-    // } = this.props;
 
-    // if (this.state.idSelected) data = findIndex(data, { id: this.state.idSelected })
+    const {
+      listusers: { data },
+    } = this.props;
+
+    const userId = findIndex(data, { id });
+    if (userId !== -1) {
+      const Userinfo = data[userId];
+      console.log(Userinfo);
+    }
+    // if (this.state.idSelected) {
+    //   let dataSelected = null;
+    //   dataSelected = findIndex(data, { id: this.state.idSelected });
+    // }
   };
 
   handleRedirectAlbums = id => {
@@ -84,26 +93,32 @@ export class ListUsers extends React.PureComponent {
         <Container>
           <TitlePage />
 
-          <Search />
-          <Date />
-
+          <HeaderTop>
+            <Date />
+          </HeaderTop>
           <ContentUsers>
-            {data.map(user => (
+            <Search
+              data={data}
+              handleRedirectAlbums={this.handleRedirectAlbums}
+              toggleModal={this.toggleModal}
+            />
+            {/* {data.map(user => (
               <User
                 key={user.id}
                 {...user}
                 handleRedirectAlbums={this.handleRedirectAlbums}
                 toggleModal={this.toggleModal}
               />
-            ))}
+            ))} */}
           </ContentUsers>
         </Container>
 
         {this.state.idSelected && (
           <Modal
+            key={data.id}
             show={this.state.isOpen}
             onClose={this.toggleModal}
-            data={data}
+            infoModal={this.infoModal}
           />
         )}
       </div>
@@ -112,11 +127,9 @@ export class ListUsers extends React.PureComponent {
 }
 
 ListUsers.propTypes = {
-  dispatch: PropTypes.func.isRequired,
   getTableData: PropTypes.func.isRequired,
   listusers: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
-  infoModal: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -125,7 +138,6 @@ const mapStateToProps = createStructuredSelector({
 
 function mapDispatchToProps(dispatch) {
   return {
-    dispatch,
     getTableData: customerId => dispatch(getTable(customerId)),
   };
 }

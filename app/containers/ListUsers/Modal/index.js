@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Icons from 'components/Icons';
+
 import { BackdropStyle, ModalStyle } from './styledComponents';
 
 // export default class Modal extends React.Component {
-
 export const Modal = props => {
   // render() {
   const { name, onClose, show } = props;
@@ -16,8 +17,10 @@ export const Modal = props => {
   return (
     <BackdropStyle>
       <ModalStyle>
-        <div className="footer">
-          <button onClick={onClose}>Close</button>
+        <div className="cerrar">
+          <button onClick={onClose}>
+            <Icons iconName="close" width="30" height="30" />
+          </button>
         </div>
         <div className="info">
           <span>{name}</span>

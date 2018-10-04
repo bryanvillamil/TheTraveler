@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 
 export const BoxUser = styled.div`
-  width: 100%;
+  // width: 100%;
   display: flex;
   margin: 1em;
   padding: 1em 2em;

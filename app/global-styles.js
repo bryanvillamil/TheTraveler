@@ -2,6 +2,15 @@ import { injectGlobal } from 'styled-components';
 
 /* eslint no-unused-expressions: 0 */
 injectGlobal`
+  html {
+    font-size: 10px;
+    @media (max-width: 768px) {
+        font-size: 55%;
+    }
+    @media (max-width: 568px) {
+        font-size: 52%;
+    }
+  }
   html,
   body {
     height: 100%;
