@@ -55,6 +55,7 @@ export class ListUsers extends React.PureComponent {
       const Userinfo = data[userId];
       console.log(Userinfo);
     }
+
     // if (this.state.idSelected) {
     //   let dataSelected = null;
     //   dataSelected = findIndex(data, { id: this.state.idSelected });
@@ -115,10 +116,9 @@ export class ListUsers extends React.PureComponent {
 
         {this.state.idSelected && (
           <Modal
-            key={data.id}
             show={this.state.isOpen}
             onClose={this.toggleModal}
-            infoModal={this.infoModal}
+            toggleModal={this.toggleModal}
           />
         )}
       </div>

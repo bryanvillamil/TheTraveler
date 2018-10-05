@@ -53,7 +53,7 @@ class SearchUser extends React.PureComponent {
 }
 
 SearchUser.propTypes = {
-  data: PropTypes.object,
+  data: PropTypes.array,
   handleRedirectAlbums: PropTypes.func,
   toggleModal: PropTypes.func,
 };
