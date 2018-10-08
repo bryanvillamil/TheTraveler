@@ -7,12 +7,17 @@ import { BackdropStyle, ModalStyle } from './styledComponents';
 export default class Modal extends React.PureComponent {
   // export const Modal = props => {
   render() {
-    const { name, onClose, show } = this.props;
+    const {
+      name,
+      address,
+      phone,
+      username,
+      website,
+      company,
+      onClose,
+    } = this.props;
 
     // Render nothing if the "show" prop is false
-    if (!show) {
-      return null;
-    }
 
     return (
       <BackdropStyle>
@@ -23,8 +28,53 @@ export default class Modal extends React.PureComponent {
             </button>
           </div>
           <div className="info">
-            <span>{name}</span>
-            <span>liadsd</span>
+            <div className="info__title">
+              <h3>{name}</h3>
+            </div>
+            <div className="info__address">
+              <h4>Address</h4>
+              <div className="content">
+                <span>
+                  <strong>city: </strong>
+                  {address.city}
+                </span>
+                <span>
+                  <strong>street: </strong>
+                  {`${address.street} (${address.suite})`}
+                </span>
+                <span>
+                  <strong>zipcode: </strong>
+                  {address.zipcode}
+                </span>
+              </div>
+            </div>
+            <div className="info__company">
+              <h4>Company</h4>
+              <div className="content">
+                <span>
+                  <strong>name:</strong>
+                  {company.name}
+                </span>
+              </div>
+            </div>
+            <div className="info__phone">
+              <span>
+                <strong>Phone: </strong>
+                {phone}
+              </span>
+            </div>
+            <div className="info__userName">
+              <span>
+                <strong>Username: </strong>
+                {username}
+              </span>
+            </div>
+            <div className="info__web">
+              <span>
+                <strong>Website: </strong>
+                {website}
+              </span>
+            </div>
           </div>
         </ModalStyle>
       </BackdropStyle>
@@ -34,6 +84,10 @@ export default class Modal extends React.PureComponent {
 
 Modal.propTypes = {
   onClose: PropTypes.func,
-  show: PropTypes.bool,
   name: PropTypes.string,
+  address: PropTypes.object,
+  phone: PropTypes.string,
+  username: PropTypes.string,
+  website: PropTypes.string,
+  company: PropTypes.object,
 };

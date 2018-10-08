@@ -31,8 +31,7 @@ import { ContentUsers, HeaderTop } from './styledComponents';
 /* eslint-disable react/prefer-stateless-function */
 export class ListUsers extends React.PureComponent {
   state = {
-    isOpen: false,
-    idSelected: '',
+    userDataSelected: null,
   };
 
   componentDidMount() {
@@ -40,44 +39,37 @@ export class ListUsers extends React.PureComponent {
     getTableData();
   }
 
-  toggleModal = id => {
-    this.setState({
-      isOpen: !this.state.isOpen,
-      idSelected: id,
-    });
-
+  openModal = id => {
     const {
       listusers: { data },
     } = this.props;
 
     const userId = findIndex(data, { id });
     if (userId !== -1) {
-      const Userinfo = data[userId];
-      console.log(Userinfo);
+      const userInfo = data[userId];
+      this.setState({
+        userDataSelected: userInfo,
+      });
     }
+  };
 
-    // if (this.state.idSelected) {
-    //   let dataSelected = null;
-    //   dataSelected = findIndex(data, { id: this.state.idSelected });
-    // }
+  closeModal = () => {
+    this.setState({
+      userDataSelected: null,
+    });
   };
 
   handleRedirectAlbums = id => {
     const {
-      history: {
-        push,
-        location: { pathname },
-      },
+      history: { push },
       listusers: { data },
     } = this.props;
 
     const userId = findIndex(data, { id });
     if (userId !== -1) {
       const Username = data[userId].name;
-      const urlPathHome = pathname;
       push(`${id}/albums`, {
         Username,
-        urlPathHome,
       });
     }
   };
@@ -86,6 +78,8 @@ export class ListUsers extends React.PureComponent {
     const {
       listusers: { data },
     } = this.props;
+
+    const { userDataSelected } = this.state;
 
     if (!data) return null;
 
@@ -106,24 +100,16 @@ export class ListUsers extends React.PureComponent {
             <Search
               data={data}
               handleRedirectAlbums={this.handleRedirectAlbums}
-              toggleModal={this.toggleModal}
+              openModal={this.openModal}
             />
-            {/* {data.map(user => (
-              <User
-                key={user.id}
-                {...user}
-                handleRedirectAlbums={this.handleRedirectAlbums}
-                toggleModal={this.toggleModal}
-              />
-            ))} */}
           </ContentUsers>
         </Container>
 
-        {this.state.idSelected && (
+        {userDataSelected && (
           <Modal
             show={this.state.isOpen}
-            onClose={this.toggleModal}
-            toggleModal={this.toggleModal}
+            onClose={this.closeModal}
+            {...userDataSelected}
           />
         )}
       </div>

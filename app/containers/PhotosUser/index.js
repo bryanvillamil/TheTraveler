@@ -15,6 +15,7 @@ import injectReducer from 'utils/injectReducer';
 import { Link } from 'react-router-dom';
 
 import TitlePage from 'components/TitlePage';
+import Icons from 'components/Icons';
 import Box from './BoxPhoto';
 
 import makeSelectPhotosUser from './selectors';
@@ -57,7 +58,9 @@ export class PhotosUser extends React.PureComponent {
         <TitlePage title="Photos" />
 
         <LinkBack>
-          <Link to={urlPathHome}>Home</Link>
+          <Link to={urlPathHome}>
+            <Icons iconName="home" height="26" width="26" />
+          </Link>
         </LinkBack>
         <ContentPhotos>
           {photos && photos.map(photo => <Box key={photo.id} {...photo} />)}

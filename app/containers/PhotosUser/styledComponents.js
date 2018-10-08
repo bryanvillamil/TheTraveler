@@ -12,8 +12,19 @@ export const LinkBack = styled.div`
   display: flex;
   width: 95%;
   margin: 0 auto;
-  padding-bottom: 20px;
+  padding-bottom: 30px;
   ${breakpoint('tablet')`
     width: 98%;
   `};
+  a {
+    transition: all 0.5s;
+    &:hover {
+      svg {
+        transform: scale(1.1);
+      }
+    }
+    svg {
+      transition: all 0.5s;
+    }
+  }
 `;

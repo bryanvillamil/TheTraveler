@@ -16,19 +16,21 @@ const KEYS_TO_FILTERS = ['email'];
 
 /* eslint-disable react/prefer-stateless-function */
 class SearchUser extends React.PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-      searchTerm: '',
-    };
-    this.searchUpdated = this.searchUpdated.bind(this);
-  }
+  state = {
+    searchTerm: '',
+  };
+
+  searchUpdated = term => {
+    this.setState({ searchTerm: term });
+  };
 
   render() {
-    const { data, handleRedirectAlbums, toggleModal } = this.props;
+    const { data, handleRedirectAlbums, openModal } = this.props;
+
+    const { searchTerm } = this.state;
 
     const filteredEmails = data.filter(
-      createFilter(this.state.searchTerm, KEYS_TO_FILTERS),
+      createFilter(searchTerm, KEYS_TO_FILTERS),
     );
 
     return (
@@ -40,22 +42,18 @@ class SearchUser extends React.PureComponent {
             key={user.id}
             {...user}
             handleRedirectAlbums={handleRedirectAlbums}
-            toggleModal={toggleModal}
+            openModal={openModal}
           />
         ))}
       </ContentSearchUsers>
     );
-  }
-
-  searchUpdated(term) {
-    this.setState({ searchTerm: term });
   }
 }
 
 SearchUser.propTypes = {
   data: PropTypes.array,
   handleRedirectAlbums: PropTypes.func,
-  toggleModal: PropTypes.func,
+  openModal: PropTypes.func,
 };
 
 export default SearchUser;

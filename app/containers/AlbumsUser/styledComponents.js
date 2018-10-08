@@ -12,7 +12,18 @@ export const ContentAlbums = styled.div`
 
 export const LinkBack = styled.div`
   display: flex;
-  padding-bottom: 20px;
+  padding-bottom: 30px;
+  a {
+    transition: all 0.5s;
+    &:hover {
+      svg {
+        transform: scale(1.1);
+      }
+    }
+    svg {
+      transition: all 0.5s;
+    }
+  }
 `;
 
 export const Container = styled.div`

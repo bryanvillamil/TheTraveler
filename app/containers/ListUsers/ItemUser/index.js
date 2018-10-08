@@ -13,11 +13,8 @@ class ItemUser extends React.Component {
   };
 
   ClickModalInfo = () => {
-    const { id, name, toggleModal } = this.props;
-
-    toggleModal(id);
-
-    console.log(`hola ${id} ${name}`);
+    const { id, openModal } = this.props;
+    openModal(id);
   };
 
   render() {
@@ -51,7 +48,7 @@ ItemUser.propTypes = {
   name: PropTypes.string,
   email: PropTypes.string,
   handleRedirectAlbums: PropTypes.func,
-  toggleModal: PropTypes.func,
+  openModal: PropTypes.func,
   id: PropTypes.number,
 };
 
