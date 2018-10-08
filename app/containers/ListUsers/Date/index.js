@@ -50,6 +50,7 @@ class Date extends React.Component {
 
   render() {
     const now = moment().format(this.state.valueSelect);
+    console.log(now);
 
     return (
       <div>
