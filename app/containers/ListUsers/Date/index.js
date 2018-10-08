@@ -12,6 +12,15 @@ import moment from 'moment';
 
 /* eslint-disable react/prefer-stateless-function */
 class Date extends React.Component {
+  state = {
+    valueSelect: 'Day',
+  };
+
+  handleChange = event => {
+    this.setState({ valueSelect: event.target.value });
+    console.log(event.target.value);
+  };
+
   renderSwitch(formatDate) {
     switch (formatDate) {
       case 'DayHour':
@@ -40,11 +49,11 @@ class Date extends React.Component {
   }
 
   render() {
-    const now = moment().format(this.renderSwitch('Day'));
+    const now = moment().format(this.state.valueSelect);
 
     return (
       <div>
-        <select name="selectFormat">
+        <select name="selectFormat" onChange={this.handleChange}>
           <option value={this.renderSwitch('DayHour')}>Día con hora</option>
           <option value={this.renderSwitch('Day')}>Día</option>
           <option value={this.renderSwitch('Hour')}>Hora</option>
