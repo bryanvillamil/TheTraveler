@@ -12,11 +12,13 @@ import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
-import { Link } from 'react-router-dom';
+import { findIndex } from 'lodash';
+// import { Link } from 'react-router-dom';
 
 import TitlePage from 'components/TitlePage';
-import Icons from 'components/Icons';
+// import Icons from 'components/Icons';
 import Box from './BoxPhoto';
+import Modal from './ModalPhoto';
 
 import makeSelectPhotosUser from './selectors';
 import reducer from './reducer';
@@ -27,6 +29,10 @@ import { ContentPhotos, LinkBack } from './styledComponents';
 
 /* eslint-disable react/prefer-stateless-function */
 export class PhotosUser extends React.PureComponent {
+  state = {
+    photoDataSelected: null,
+  };
+
   componentDidMount() {
     const {
       getPhotoData,
@@ -37,17 +43,39 @@ export class PhotosUser extends React.PureComponent {
     getPhotoData(id);
   }
 
-  render() {
+  openModal = id => {
     const {
-      location: {
-        state: {
-          urlPathHome,
-          // urlPathAlbums
-        },
-      },
       photosuser: { photos },
     } = this.props;
-    console.log('bry', this.props);
+
+    const photoId = findIndex(photos, { id });
+    if (photoId !== -1) {
+      const photoInfo = photos[photoId];
+      console.log(photoInfo);
+      this.setState({
+        photoDataSelected: photoInfo,
+      });
+    }
+  };
+
+  closeModal = () => {
+    this.setState({
+      photoDataSelected: null,
+    });
+  };
+
+  render() {
+    const {
+      // location: {
+      //   state: {
+      //     urlPathHome,
+      //     urlPathAlbums
+      //   },
+      // },
+      photosuser: { photos },
+    } = this.props;
+
+    const { photoDataSelected } = this.state;
 
     return (
       <div>
@@ -58,13 +86,24 @@ export class PhotosUser extends React.PureComponent {
         <TitlePage title="Photos" />
 
         <LinkBack>
-          <Link to={urlPathHome}>
+          {/* <Link to={urlPathHome}>
             <Icons iconName="home" height="26" width="26" />
-          </Link>
+          </Link> */}
         </LinkBack>
         <ContentPhotos>
-          {photos && photos.map(photo => <Box key={photo.id} {...photo} />)}
+          {photos &&
+            photos.map(photo => (
+              <Box key={photo.id} {...photo} openModal={this.openModal} />
+            ))}
         </ContentPhotos>
+
+        {photoDataSelected && (
+          <Modal
+            show={this.state.isOpen}
+            onClose={this.closeModal}
+            {...photoDataSelected}
+          />
+        )}
       </div>
     );
   }

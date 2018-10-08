@@ -37,6 +37,14 @@ export const Box = styled.div`
       align-items: center;
       justify-content: center;
       flex-direction: column;
+      svg {
+        height: 25px;
+        width: 25px;
+        ${breakpoint('desktop')`
+          height: 40px;
+          width: 40px;
+        `};
+      }
       span {
         color: #fff;
       }
