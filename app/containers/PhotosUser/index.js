@@ -12,6 +12,7 @@ import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
+import { Link } from 'react-router-dom';
 
 import TitlePage from 'components/TitlePage';
 import Box from './BoxPhoto';
@@ -21,7 +22,7 @@ import reducer from './reducer';
 import saga from './saga';
 import { getPhoto } from './actions';
 
-import { ContentPhotos } from './styledComponents';
+import { ContentPhotos, LinkBack } from './styledComponents';
 
 /* eslint-disable react/prefer-stateless-function */
 export class PhotosUser extends React.PureComponent {
@@ -37,12 +38,12 @@ export class PhotosUser extends React.PureComponent {
 
   render() {
     const {
-      // location: {
-      //   state: {
-      //     urlPathHome,
-      //     urlPathAlbums
-      //   },
-      // },
+      location: {
+        state: {
+          urlPathHome,
+          // urlPathAlbums
+        },
+      },
       photosuser: { photos },
     } = this.props;
     console.log('bry', this.props);
@@ -55,6 +56,9 @@ export class PhotosUser extends React.PureComponent {
 
         <TitlePage title="Photos" />
 
+        <LinkBack>
+          <Link to={urlPathHome}>Home</Link>
+        </LinkBack>
         <ContentPhotos>
           {photos && photos.map(photo => <Box key={photo.id} {...photo} />)}
         </ContentPhotos>

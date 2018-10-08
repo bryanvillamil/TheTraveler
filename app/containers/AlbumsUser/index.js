@@ -12,6 +12,7 @@ import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import { findIndex } from 'lodash';
 import randomColor from 'randomcolor';
+import { Link } from 'react-router-dom';
 
 import TitlePage from 'components/TitlePage';
 import injectSaga from 'utils/injectSaga';
@@ -78,7 +79,7 @@ export class AlbumsUser extends React.PureComponent {
     const {
       history: {
         location: {
-          state: { Username },
+          state: { Username, urlPathHome },
         },
       },
       albumsuser: { data },
@@ -92,7 +93,9 @@ export class AlbumsUser extends React.PureComponent {
 
         <TitlePage title={`album of ${Username}`} />
 
-        <LinkBack />
+        <LinkBack>
+          <Link to={urlPathHome}>Home</Link>
+        </LinkBack>
 
         <ContentAlbums>
           {data &&
