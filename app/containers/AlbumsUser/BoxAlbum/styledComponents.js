@@ -16,12 +16,30 @@ export const Box = styled.div`
   .box {
     width: 90%;
     margin: 0 auto;
-    background: #fff;
     padding: 15px;
+    cursor: pointer;
+    &:hover {
+      .box__img {
+        img {
+          transform: scale(1.1);
+          filter: grayscale(0);
+        }
+      }
+    }
+    button {
+      cursor: pointer;
+      padding: 0;
+      &:focus {
+        outline: none;
+      }
+    }
     &__img {
       position: relative;
+      overflow: hidden;
       img {
         width: 100%;
+        transition: all 0.5s;
+        filter: grayscale(100%);
       }
     }
     &__icon {
@@ -36,6 +54,11 @@ export const Box = styled.div`
       right: 0;
     }
     &__text {
+      padding-top: 10px;
+      height: 55px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       span {
         width: 100%;
         font-size: 13px;

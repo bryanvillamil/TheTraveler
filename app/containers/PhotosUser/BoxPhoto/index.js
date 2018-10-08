@@ -6,6 +6,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import TextEllipsis from 'react-text-ellipsis';
 
 import Img from 'components/Img';
 import Icons from 'components/Icons';
@@ -27,6 +28,14 @@ function BoxPhoto(props) {
             width="40"
             backgroundColor="#fff"
           />
+          <TextEllipsis
+            lines={1}
+            tag="span"
+            tagClass="title__desc"
+            ellipsisChars="..."
+          >
+            {title}
+          </TextEllipsis>
         </div>
       </div>
     </Box>

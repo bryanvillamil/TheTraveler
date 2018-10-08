@@ -64,15 +64,20 @@ export class ListUsers extends React.PureComponent {
 
   handleRedirectAlbums = id => {
     const {
-      history: { push },
+      history: {
+        push,
+        location: { pathname },
+      },
       listusers: { data },
     } = this.props;
 
     const userId = findIndex(data, { id });
     if (userId !== -1) {
       const Username = data[userId].name;
+      const urlPathHome = pathname;
       push(`${id}/albums`, {
         Username,
+        urlPathHome,
       });
     }
   };

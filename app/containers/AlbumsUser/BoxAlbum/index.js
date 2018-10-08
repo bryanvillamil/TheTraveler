@@ -6,14 +6,15 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-// import styled from 'styled-components';
+import TextEllipsis from 'react-text-ellipsis';
 
 import Img from 'components/Img';
 import Icons from 'components/Icons';
+import Banner from './bg.jpg';
 import { Box } from './styledComponents';
 
 function BoxAlbum(props) {
-  const { title, handleRedirectPhotos, id } = props;
+  const { id, title, backgroundColor, handleRedirectPhotos } = props;
 
   const photoClick = () => {
     handleRedirectPhotos(id);
@@ -21,16 +22,28 @@ function BoxAlbum(props) {
 
   return (
     <Box>
-      <div className="box">
+      <div className="box" style={{ backgroundColor }}>
         <button onClick={photoClick}>
           <div className="box__img">
-            <Img src="https://dummyimage.com/300x200/f8f8f8/000" alt="prueba" />
+            <Img src={Banner} alt="prueba" />
             <div className="box__icon">
-              <Icons iconName="album" />
+              <Icons
+                iconName="album"
+                backgroundColor="#fff"
+                height="35"
+                width="35"
+              />
             </div>
           </div>
           <div className="box__text">
-            <span>{title}</span>
+            <TextEllipsis
+              lines={2}
+              tag="span"
+              tagClass="box__text--desc"
+              ellipsisChars="..."
+            >
+              {title}
+            </TextEllipsis>
           </div>
         </button>
       </div>
@@ -39,9 +52,14 @@ function BoxAlbum(props) {
 }
 
 BoxAlbum.propTypes = {
-  handleRedirectPhotos: PropTypes.func,
-  title: PropTypes.string,
   id: PropTypes.number,
+  title: PropTypes.string,
+  backgroundColor: PropTypes.string,
+  handleRedirectPhotos: PropTypes.func,
+};
+
+BoxAlbum.defaultProps = {
+  backgroundColor: '#000',
 };
 
 export default BoxAlbum;

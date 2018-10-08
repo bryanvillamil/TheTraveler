@@ -11,9 +11,9 @@ import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import { findIndex } from 'lodash';
+import randomColor from 'randomcolor';
 
 import TitlePage from 'components/TitlePage';
-
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
 import Box from './BoxAlbum';
@@ -22,7 +22,7 @@ import reducer from './reducer';
 import saga from './saga';
 import { getInfo } from './actions';
 
-import { ContentAlbums, Container } from './styledComponents';
+import { ContentAlbums, Container, LinkBack } from './styledComponents';
 
 /* eslint-disable react/prefer-stateless-function */
 export class AlbumsUser extends React.PureComponent {
@@ -51,15 +51,25 @@ export class AlbumsUser extends React.PureComponent {
 
   handleRedirectPhotos = id => {
     const {
-      history: { push },
+      history: {
+        push,
+        location: {
+          pathname,
+          state: { Username, urlPathHome },
+        },
+      },
       albumsuser: { data },
     } = this.props;
 
     const userPhotos = findIndex(data, { id });
     if (userPhotos !== -1) {
-      const Username = data[userPhotos].name;
+      const UserId = data[userPhotos].userId;
+      const urlPathAlbums = pathname;
       push(`/${id}/photos`, {
+        UserId,
         Username,
+        urlPathHome,
+        urlPathAlbums,
       });
     }
   };
@@ -82,6 +92,8 @@ export class AlbumsUser extends React.PureComponent {
 
         <TitlePage title={`album of ${Username}`} />
 
+        <LinkBack />
+
         <ContentAlbums>
           {data &&
             data.map(album => (
@@ -89,6 +101,7 @@ export class AlbumsUser extends React.PureComponent {
                 key={album.id}
                 {...album}
                 handleRedirectPhotos={this.handleRedirectPhotos}
+                backgroundColor={randomColor()}
               />
             ))}
         </ContentAlbums>

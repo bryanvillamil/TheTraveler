@@ -36,8 +36,15 @@ export const Box = styled.div`
       display: flex;
       align-items: center;
       justify-content: center;
+      flex-direction: column;
       span {
         color: #fff;
+      }
+      .title__desc {
+        text-align: center;
+        padding: 0 5px;
+        font-size: 12px;
+        padding-top: 10px;
       }
     }
     &:hover {

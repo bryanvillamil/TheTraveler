@@ -7,7 +7,12 @@ export const ContentAlbums = styled.div`
   flex-wrap: wrap;
   align-items: flex-start;
   justify-content: flex-start;
-  padding: 16px 8px;
+  padding: 24px 8px 0px;
+`;
+
+export const LinkBack = styled.div`
+  display: flex;
+  padding-bottom: 20px;
 `;
 
 export const Container = styled.div`

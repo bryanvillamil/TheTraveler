@@ -144,6 +144,7 @@
     ]
   },
   "dependencies": {
+    "@material-ui/core": "^3.2.0",
     "babel-polyfill": "6.26.0",
     "chalk": "^2.4.1",
     "codemirror": "^5.40.2",
@@ -161,6 +162,7 @@
     "minimist": "1.2.0",
     "moment": "^2.22.2",
     "prop-types": "15.6.1",
+    "randomcolor": "^0.5.3",
     "react": "16.4.1",
     "react-dom": "16.4.1",
     "react-helmet": "5.2.0",
@@ -172,6 +174,7 @@
     "react-router-dom": "4.3.1",
     "react-router-redux": "5.0.0-alpha.9",
     "react-search-input": "^0.11.3",
+    "react-text-ellipsis": "^1.5.0",
     "redux": "4.0.0",
     "redux-immutable": "4.0.0",
     "redux-saga": "0.16.0",

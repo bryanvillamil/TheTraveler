@@ -37,8 +37,15 @@ export class PhotosUser extends React.PureComponent {
 
   render() {
     const {
+      // location: {
+      //   state: {
+      //     urlPathHome,
+      //     urlPathAlbums
+      //   },
+      // },
       photosuser: { photos },
     } = this.props;
+    console.log('bry', this.props);
 
     return (
       <div>
@@ -47,6 +54,7 @@ export class PhotosUser extends React.PureComponent {
         </Helmet>
 
         <TitlePage title="Photos" />
+
         <ContentPhotos>
           {photos && photos.map(photo => <Box key={photo.id} {...photo} />)}
         </ContentPhotos>
@@ -59,6 +67,7 @@ PhotosUser.propTypes = {
   dispatch: PropTypes.func.isRequired,
   getPhotoData: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired,
+  location: PropTypes.object.isRequired,
   match: PropTypes.object.isRequired,
   photosuser: PropTypes.object.isRequired,
 };
