@@ -6,19 +6,18 @@
 
 import React from 'react';
 // import PropTypes from 'prop-types';
-// import styled from 'styled-components';
-
 import moment from 'moment';
+
+import { ContentDate } from './styledComponents';
 
 /* eslint-disable react/prefer-stateless-function */
 class Date extends React.Component {
   state = {
-    valueSelect: 'Day',
+    valueSelect: '************',
   };
 
   handleChange = event => {
     this.setState({ valueSelect: event.target.value });
-    console.log(event.target.value);
   };
 
   renderSwitch(formatDate) {
@@ -26,7 +25,7 @@ class Date extends React.Component {
       case 'DayHour':
         return (
           // mm-dd-yyyy hh:ss
-          'MM-DD-YYYY hh:ss'
+          'MM-DD-YYYY, HH:mm'
         );
       case 'Day':
         return (
@@ -36,7 +35,7 @@ class Date extends React.Component {
       case 'Hour':
         return (
           // HH: ss : AM/PM
-          'HH: ss : AM/PM'
+          'HH:ss A'
         );
       case 'MonthFirst':
         return (
@@ -50,11 +49,17 @@ class Date extends React.Component {
 
   render() {
     const now = moment().format(this.state.valueSelect);
-    console.log(now);
 
     return (
-      <div>
-        <select name="selectFormat" onChange={this.handleChange}>
+      <ContentDate>
+        <select
+          name="selectFormat"
+          onChange={this.handleChange}
+          defaultValue={this.state.valueSelect}
+        >
+          <option disabled defaultValue value="Empty">
+            select an option
+          </option>
           <option value={this.renderSwitch('DayHour')}>Día con hora</option>
           <option value={this.renderSwitch('Day')}>Día</option>
           <option value={this.renderSwitch('Hour')}>Hora</option>
@@ -62,7 +67,7 @@ class Date extends React.Component {
         </select>
 
         <span>{now}</span>
-      </div>
+      </ContentDate>
     );
   }
 }

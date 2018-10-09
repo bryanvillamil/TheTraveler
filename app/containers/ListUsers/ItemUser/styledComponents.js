@@ -5,7 +5,7 @@ export const BoxUser = styled.div`
   // width: 100%;
   display: flex;
   margin: 1em;
-  padding: 1em 2em;
+  padding: 1em 0.8em;
   border: none;
   background: none;
   color: inherit;
@@ -19,6 +19,9 @@ export const BoxUser = styled.div`
   overflow: hidden;
   -webkit-transition: color 0.3s;
   transition: color 0.3s;
+  ${breakpoint('tablet')`
+    padding: 1em 2em;
+  `};
   &:focus {
     outline: none;
   }
@@ -60,23 +63,38 @@ export const BoxUser = styled.div`
     }
   }
   .folder {
-    width: 80px;
+    width: 40px;
     margin-right: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
+    ${breakpoint('tablet')`
+      width: 80px;
+    `};
     .contentIcon {
       background: #bbb;
       border-radius: 50%;
-      padding: 10px;
+      padding: 8px;
       transition: all 0.7s;
+      ${breakpoint('tablet')`
+        padding: 10px;
+      `};
+      svg {
+        ${breakpoint('tablet')`
+          height: 40px;
+          width: 40px;
+        `};
+      }
     }
   }
   .info {
-    width: 18%;
+    width: 15%;
     display: flex;
     align-items: center;
     justify-content: center;
+    ${breakpoint('tablet')`
+      width: 18%;
+    `};
     &:focus {
       outline: none;
     }
@@ -104,7 +122,7 @@ export const User = styled.div`
 export const Span = styled.span`
   display: flex;
   flex-direction: column;
-  font-size: 14px;
+  font-size: 13px;
   ${breakpoint('tablet')`
     font-size: 16px;
   `};

@@ -24,7 +24,7 @@ class ItemUser extends React.Component {
       <BoxUser>
         <div className="folder">
           <div className="contentIcon">
-            <Icons iconName="folder" height="40" width="40" />
+            <Icons iconName="folder" />
           </div>
         </div>
         <User onClick={this.rowClick}>
