@@ -13,10 +13,10 @@ import { compose } from 'redux';
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
 import { findIndex } from 'lodash';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import TitlePage from 'components/TitlePage';
-// import Icons from 'components/Icons';
+import Icons from 'components/Icons';
 import Box from './BoxPhoto';
 import Modal from './ModalPhoto';
 
@@ -64,14 +64,21 @@ export class PhotosUser extends React.PureComponent {
     });
   };
 
+  backAlbums = () => {
+    const {
+      history,
+      location: {
+        state: { Username },
+      },
+    } = this.props;
+    history.goBack();
+    history.push({
+      Username,
+    });
+  };
+
   render() {
     const {
-      // location: {
-      //   state: {
-      //     urlPathHome,
-      //     urlPathAlbums
-      //   },
-      // },
       photosuser: { photos },
     } = this.props;
 
@@ -86,9 +93,16 @@ export class PhotosUser extends React.PureComponent {
         <TitlePage title="Photos" />
 
         <LinkBack>
-          {/* <Link to={urlPathHome}>
+          <Link to="/" className="urlPathHome" title="Home">
             <Icons iconName="home" height="26" width="26" />
-          </Link> */}
+          </Link>
+          <button
+            className="urlPathAlbums"
+            onClick={this.backAlbums}
+            title="Albums"
+          >
+            <Icons iconName="album" height="26" width="26" />
+          </button>
         </LinkBack>
         <ContentPhotos>
           {photos &&

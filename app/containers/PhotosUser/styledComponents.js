@@ -18,6 +18,20 @@ export const LinkBack = styled.div`
   `};
   a {
     transition: all 0.5s;
+    text-decoration: none;
+    &.urlPathHome {
+      padding-right: 25px;
+      position: relative;
+      &:after {
+        content: '/';
+        display: flex;
+        font-size: 28px;
+        position: absolute;
+        right: 4px;
+        top: -7px;
+        color: #000;
+      }
+    }
     &:hover {
       svg {
         transform: scale(1.1);
@@ -25,6 +39,25 @@ export const LinkBack = styled.div`
     }
     svg {
       transition: all 0.5s;
+    }
+  }
+
+  button {
+    cursor: pointer;
+    &:focus {
+      outline: none;
+    }
+    &.urlPathAlbums {
+      transition: all 0.5s;
+      font-size: 16px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2px 5px 0;
+      &:hover {
+        transform: scale(1.1);
+      }
     }
   }
 `;

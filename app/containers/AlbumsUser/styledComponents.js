@@ -8,6 +8,7 @@ export const ContentAlbums = styled.div`
   align-items: flex-start;
   justify-content: flex-start;
   padding: 24px 8px 0px;
+  margin-bottom: 15px;
 `;
 
 export const LinkBack = styled.div`

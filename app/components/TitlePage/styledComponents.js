@@ -5,16 +5,22 @@ export const TitleHome = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 15px 5px 20px;
+  padding: 15px 0 20px;
   .link {
     outline: none;
     text-decoration: none;
     position: relative;
-    font-size: 2rem;
+    font-size: 2.5rem;
     line-height: 1;
     color: #9e9ba4;
     display: inline-block;
     cursor: pointer;
+    @media (max-width: 500px) {
+      font-size: 2rem;
+    }
+    @media (max-width: 400px) {
+      font-size: 1.7rem;
+    }
     ${breakpoint('tablet')`
       font-size: 3.2rem;
     `};

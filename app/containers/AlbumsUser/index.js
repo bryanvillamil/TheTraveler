@@ -12,10 +12,10 @@ import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import { findIndex } from 'lodash';
 import randomColor from 'randomcolor';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import TitlePage from 'components/TitlePage';
-// import Icons from 'components/Icons';
+import Icons from 'components/Icons';
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
 import Box from './BoxAlbum';
@@ -56,8 +56,7 @@ export class AlbumsUser extends React.PureComponent {
       history: {
         push,
         location: {
-          pathname,
-          state: { Username, urlPathHome },
+          state: { Username },
         },
       },
       albumsuser: { data },
@@ -66,25 +65,17 @@ export class AlbumsUser extends React.PureComponent {
     const userPhotos = findIndex(data, { id });
     if (userPhotos !== -1) {
       const UserId = data[userPhotos].userId;
-      const urlPathAlbums = pathname;
       push(`/${id}/photos`, {
         UserId,
         Username,
-        urlPathHome,
-        urlPathAlbums,
       });
     }
   };
 
   render() {
     const {
-      history: {
-        location: {
-          state: {
-            Username,
-            // urlPathHome
-          },
-        },
+      location: {
+        state: { Username },
       },
       albumsuser: { data },
     } = this.props;
@@ -98,13 +89,9 @@ export class AlbumsUser extends React.PureComponent {
         <TitlePage title={`album of ${Username}`} />
 
         <LinkBack>
-          {/* <Link to={urlPathHome}>
-            <Icons
-              iconName="home"
-              height="26"
-              width="26"
-            />
-          </Link> */}
+          <Link to="/" title="Home">
+            <Icons iconName="home" height="26" width="26" />
+          </Link>
         </LinkBack>
 
         <ContentAlbums>
@@ -126,6 +113,7 @@ export class AlbumsUser extends React.PureComponent {
 AlbumsUser.propTypes = {
   dispatch: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired,
+  location: PropTypes.object.isRequired,
   match: PropTypes.object.isRequired,
   getInfoData: PropTypes.func.isRequired,
   albumsuser: PropTypes.object.isRequired,
