@@ -36,7 +36,7 @@ export class AlbumsUser extends React.PureComponent {
       history,
     } = this.props;
 
-    if (id === -1 || id > id.length) {
+    if (id === -1) {
       history.goBack();
     }
   }
