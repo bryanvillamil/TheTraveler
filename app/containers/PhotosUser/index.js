@@ -51,7 +51,6 @@ export class PhotosUser extends React.PureComponent {
     const photoId = findIndex(photos, { id });
     if (photoId !== -1) {
       const photoInfo = photos[photoId];
-      console.log(photoInfo);
       this.setState({
         photoDataSelected: photoInfo,
       });
