@@ -54,7 +54,8 @@ export const Box = styled.div`
       right: 0;
     }
     &__text {
-      padding-top: 10px;
+      margin-top: 10px;
+      background: #f8f8f8;
       height: 55px;
       display: flex;
       align-items: center;
@@ -63,6 +64,7 @@ export const Box = styled.div`
         width: 100%;
         font-size: 13px;
         display: flex;
+        text-transform: capitalize;
       }
     }
   }

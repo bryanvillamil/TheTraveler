@@ -8,7 +8,7 @@ import React from 'react';
 // import PropTypes from 'prop-types';
 import moment from 'moment';
 
-import { ContentDate } from './styledComponents';
+import { ContentDate, DateBox, DateTitle } from './styledComponents';
 
 /* eslint-disable react/prefer-stateless-function */
 class Date extends React.Component {
@@ -52,21 +52,26 @@ class Date extends React.Component {
 
     return (
       <ContentDate>
-        <select
-          name="selectFormat"
-          onChange={this.handleChange}
-          defaultValue={this.state.valueSelect}
-        >
-          <option disabled defaultValue value="Empty">
-            select an option
-          </option>
-          <option value={this.renderSwitch('DayHour')}>Día con hora</option>
-          <option value={this.renderSwitch('Day')}>Día</option>
-          <option value={this.renderSwitch('Hour')}>Hora</option>
-          <option value={this.renderSwitch('MonthFirst')}>Mes inicial</option>
-        </select>
+        <DateTitle>
+          <h4>Current date</h4>
+        </DateTitle>
 
-        <span>{now}</span>
+        <DateBox>
+          <select
+            name="selectFormat"
+            onChange={this.handleChange}
+            defaultValue={this.state.valueSelect}
+          >
+            <option disabled defaultValue value="Empty">
+              select an option
+            </option>
+            <option value={this.renderSwitch('DayHour')}>Día con hora</option>
+            <option value={this.renderSwitch('Day')}>Día</option>
+            <option value={this.renderSwitch('Hour')}>Hora</option>
+            <option value={this.renderSwitch('MonthFirst')}>Mes inicial</option>
+          </select>
+          <span>{now}</span>
+        </DateBox>
       </ContentDate>
     );
   }

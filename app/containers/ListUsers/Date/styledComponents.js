@@ -3,6 +3,31 @@ import breakpoint from 'styled-components-breakpoint';
 
 export const ContentDate = styled.div`
   display: flex;
+  flex-direction: column;
+  ${breakpoint('tablet')`
+    order: 2;
+  `};
+`;
+
+export const DateTitle = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  h4 {
+    font-size: 16px;
+    margin: 0 0 12px;
+    color: #333;
+  }
+  ${breakpoint('tablet')`
+    justify-content: flex-end;
+    h4 {
+      font-size: 18px;
+    }
+  `};
+`;
+
+export const DateBox = styled.div`
+  display: flex;
   flex-direction: row;
   font-size: 14px;
   ${breakpoint('tablet')`

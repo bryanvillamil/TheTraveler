@@ -23,7 +23,7 @@ class ItemUser extends React.Component {
     return (
       <BoxUser>
         <div className="folder">
-          <div className="contentIcon">
+          <div className="contentIcon" onClick={this.rowClick}>
             <Icons iconName="folder" />
           </div>
         </div>

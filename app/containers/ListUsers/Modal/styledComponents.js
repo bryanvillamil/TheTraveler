@@ -31,9 +31,13 @@ export const ModalStyle = styled.div`
   `};
   .cerrar {
     position: absolute;
-    right: 4%;
-    top: 6%;
+    right: -3%;
+    top: -5%;
+    background: #fff;
+    border-radius: 50%;
+    padding: 2px;
     button {
+      padding: 0;
       &:focus {
         outline: none;
       }

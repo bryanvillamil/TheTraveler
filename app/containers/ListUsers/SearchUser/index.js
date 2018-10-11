@@ -7,9 +7,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import SearchInput, { createFilter } from 'react-search-input';
+import Date from '../Date';
 import User from '../ItemUser';
 
-import { ContentSearchUsers } from './styledComponents';
+import { ContentSearchUsers, SearchTop } from './styledComponents';
 
 // const KEYS_TO_FILTERS = ['email', 'name', 'id']
 const KEYS_TO_FILTERS = ['email'];
@@ -33,11 +34,20 @@ class SearchUser extends React.PureComponent {
       createFilter(searchTerm, KEYS_TO_FILTERS),
     );
 
+    const arrayUsersEmails = filteredEmails.sort((a, b) => {
+      if (a.name > b.name) {
+        return 1;
+      }
+    });
+
     return (
       <ContentSearchUsers>
-        <SearchInput className="search-input" onChange={this.searchUpdated} />
+        <SearchTop>
+          <SearchInput className="search-input" onChange={this.searchUpdated} />
+          <Date />
+        </SearchTop>
 
-        {filteredEmails.map(user => (
+        {arrayUsersEmails.map(user => (
           <User
             key={user.id}
             {...user}

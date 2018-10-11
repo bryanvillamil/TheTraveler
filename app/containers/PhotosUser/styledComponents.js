@@ -8,6 +8,21 @@ export const ContentPhotos = styled.div`
   padding: 5px;
 `;
 
+export const TitleAlbumPhoto = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 8px 15px;
+  span {
+    text-transform: uppercase;
+    font-size: 16px;
+    text-align: center;
+    ${breakpoint('tablet')`
+      font-size: 22px;
+    `};
+  }
+`;
+
 export const LinkBack = styled.div`
   display: flex;
   width: 95%;

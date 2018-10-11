@@ -7,12 +7,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import Container from 'components/Container';
 import Header from 'components/Header';
 import TitlePage from 'components/TitlePage';
+import Loading from 'components/Loading';
 import { findIndex } from 'lodash';
 
 import injectSaga from 'utils/injectSaga';
@@ -22,11 +22,10 @@ import reducer from './reducer';
 import saga from './saga';
 // import User from './ItemUser';
 import Search from './SearchUser';
-import Date from './Date';
 import Modal from './Modal';
 import { getTable } from './actions';
 
-import { ContentUsers, HeaderTop } from './styledComponents';
+import { ContentUsers } from './styledComponents';
 
 /* eslint-disable react/prefer-stateless-function */
 export class ListUsers extends React.PureComponent {
@@ -68,7 +67,7 @@ export class ListUsers extends React.PureComponent {
     const userId = findIndex(data, { id });
     if (userId !== -1) {
       const Username = data[userId].name;
-      push(`${id}/albums`, {
+      push(`/user/${id}/albums`, {
         Username,
       });
     }
@@ -76,7 +75,7 @@ export class ListUsers extends React.PureComponent {
 
   render() {
     const {
-      listusers: { data },
+      listusers: { data, isLoading },
     } = this.props;
 
     const { userDataSelected } = this.state;
@@ -84,35 +83,31 @@ export class ListUsers extends React.PureComponent {
     if (!data) return null;
 
     return (
-      <div>
-        <Helmet>
-          <title>List Users</title>
-          <meta name="description" content="Description of ListUsers" />
-        </Helmet>
-        <Header />
-        <Container>
-          <TitlePage />
+      isLoading
+        ?
+          <Loading />
+        :
+          <div>
+            <Header />
+            <Container>
+              <TitlePage />
+              <ContentUsers>
+                <Search
+                  data={data}
+                  handleRedirectAlbums={this.handleRedirectAlbums}
+                  openModal={this.openModal}
+                />
+              </ContentUsers>
+            </Container>
 
-          <HeaderTop>
-            <Date />
-          </HeaderTop>
-          <ContentUsers>
-            <Search
-              data={data}
-              handleRedirectAlbums={this.handleRedirectAlbums}
-              openModal={this.openModal}
-            />
-          </ContentUsers>
-        </Container>
-
-        {userDataSelected && (
-          <Modal
-            show={this.state.isOpen}
-            onClose={this.closeModal}
-            {...userDataSelected}
-          />
-        )}
-      </div>
+            {userDataSelected && (
+              <Modal
+                show={this.state.isOpen}
+                onClose={this.closeModal}
+                {...userDataSelected}
+              />
+            )}
+          </div>
     );
   }
 }

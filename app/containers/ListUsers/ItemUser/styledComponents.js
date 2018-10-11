@@ -76,10 +76,17 @@ export const BoxUser = styled.div`
       border-radius: 50%;
       padding: 8px;
       transition: all 0.7s;
+      cursor: pointer;
+      &:hover {
+        svg {
+          transform: scale(1.1);
+        }
+      }
       ${breakpoint('tablet')`
         padding: 10px;
       `};
       svg {
+        transition: all 0.5s;
         ${breakpoint('tablet')`
           height: 40px;
           width: 40px;

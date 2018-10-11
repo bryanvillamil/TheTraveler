@@ -6,11 +6,12 @@ import {
 } from 'containers/App/actions';
 import request from 'utils/request';
 import { GET_TABLE } from './constants';
-import { setTable } from './actions';
+import { setTable, toggleLoading } from './actions';
 
 export function* getTable() {
   const requestUrl = `/users`;
   try {
+    yield put(toggleLoading({ isLoading: true }));
     yield put(requestingApi());
     const response = yield call(request, requestUrl);
     if (response.error) {
@@ -18,8 +19,11 @@ export function* getTable() {
       yield put(responseFailed(errorObj));
       return;
     }
-    yield put(setTable(response));
-    yield put(responseSuccess());
+    if (response) {
+      yield put(toggleLoading({ isLoading: false }));
+      yield put(setTable(response));
+      yield put(responseSuccess());
+    }
   } catch (error) {
     yield put(responseFailed(error));
   }

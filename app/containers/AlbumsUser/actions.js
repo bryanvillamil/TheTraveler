@@ -4,7 +4,12 @@
  *
  */
 
-import { DEFAULT_ACTION, GET_INFO, SET_INFO } from './constants';
+import {
+  DEFAULT_ACTION,
+  GET_INFO,
+  SET_INFO,
+  TOGGLE_LOADING,
+} from './constants';
 
 export function defaultAction() {
   return {
@@ -22,5 +27,10 @@ export function setInfo(data) {
   return {
     type: SET_INFO,
     data,
+  };
+}
+export function toggleLoading() {
+  return {
+    type: TOGGLE_LOADING,
   };
 }

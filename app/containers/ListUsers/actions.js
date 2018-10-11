@@ -4,7 +4,12 @@
  *
  */
 
-import { DEFAULT_ACTION, GET_TABLE, SET_TABLE } from './constants';
+import {
+  DEFAULT_ACTION,
+  GET_TABLE,
+  SET_TABLE,
+  TOGGLE_LOADING,
+} from './constants';
 
 export function getTable() {
   return {
@@ -22,5 +27,11 @@ export function setTable(data) {
 export function defaultAction() {
   return {
     type: DEFAULT_ACTION,
+  };
+}
+
+export function toggleLoading() {
+  return {
+    type: TOGGLE_LOADING,
   };
 }

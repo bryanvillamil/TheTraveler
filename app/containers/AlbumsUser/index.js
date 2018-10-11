@@ -12,9 +12,11 @@ import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import { findIndex } from 'lodash';
 import randomColor from 'randomcolor';
+// import ReactLoading from "react-loading";
 import { Link } from 'react-router-dom';
 
 import TitlePage from 'components/TitlePage';
+import Loading from 'components/Loading';
 import Icons from 'components/Icons';
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
@@ -65,9 +67,11 @@ export class AlbumsUser extends React.PureComponent {
     const userPhotos = findIndex(data, { id });
     if (userPhotos !== -1) {
       const UserId = data[userPhotos].userId;
+      const title = data[userPhotos].title;
       push(`/${id}/photos`, {
         UserId,
         Username,
+        title,
       });
     }
   };
@@ -77,7 +81,10 @@ export class AlbumsUser extends React.PureComponent {
       location: {
         state: { Username },
       },
-      albumsuser: { data },
+      albumsuser: {
+        data,
+        isLoading,
+      },
     } = this.props;
 
     return (
@@ -94,17 +101,26 @@ export class AlbumsUser extends React.PureComponent {
           </Link>
         </LinkBack>
 
-        <ContentAlbums>
-          {data &&
-            data.map(album => (
-              <Box
-                key={album.id}
-                {...album}
-                handleRedirectPhotos={this.handleRedirectPhotos}
-                backgroundColor={randomColor()}
-              />
-            ))}
-        </ContentAlbums>
+        {
+          (isLoading)
+          ?
+            <Loading />
+          :
+            <ContentAlbums>
+              {
+                (data) &&
+                  data.map(album => (
+                    <Box
+                      key={album.id}
+                      {...album}
+                      handleRedirectPhotos={this.handleRedirectPhotos}
+                      backgroundColor={randomColor()}
+                    />
+                  ))
+              }
+            </ContentAlbums>
+        }
+
       </Container>
     );
   }

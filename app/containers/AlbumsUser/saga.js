@@ -6,11 +6,12 @@ import {
 } from 'containers/App/actions';
 import request from 'utils/request';
 import { GET_INFO } from './constants';
-import { setInfo } from './actions';
+import { setInfo, toggleLoading } from './actions';
 
 export function* getInfo({ userId }) {
   const requestUrl = `/users/${userId}/albums`;
   try {
+    yield put(toggleLoading({ isLoading: true }));
     yield put(requestingApi());
     const response = yield call(request, requestUrl);
     if (response.error) {
@@ -18,8 +19,11 @@ export function* getInfo({ userId }) {
       yield put(responseFailed(errorObj));
       return;
     }
-    yield put(setInfo(response));
-    yield put(responseSuccess());
+    if (response) {
+      yield put(toggleLoading({ isLoading: false }));
+      yield put(setInfo(response));
+      yield put(responseSuccess());
+    }
   } catch (error) {
     yield put(responseFailed(error));
   }

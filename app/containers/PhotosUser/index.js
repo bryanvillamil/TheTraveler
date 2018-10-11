@@ -16,6 +16,7 @@ import { findIndex } from 'lodash';
 import { Link } from 'react-router-dom';
 
 import TitlePage from 'components/TitlePage';
+import Loading from 'components/Loading';
 import Icons from 'components/Icons';
 import Box from './BoxPhoto';
 import Modal from './ModalPhoto';
@@ -25,7 +26,11 @@ import reducer from './reducer';
 import saga from './saga';
 import { getPhoto } from './actions';
 
-import { ContentPhotos, LinkBack } from './styledComponents';
+import {
+  ContentPhotos,
+  LinkBack,
+  TitleAlbumPhoto,
+} from './styledComponents';
 
 /* eslint-disable react/prefer-stateless-function */
 export class PhotosUser extends React.PureComponent {
@@ -65,20 +70,33 @@ export class PhotosUser extends React.PureComponent {
 
   backAlbums = () => {
     const {
-      history,
+      history: {
+        push,
+      },
       location: {
-        state: { Username },
+        state: {
+          Username,
+          UserId,
+        },
       },
     } = this.props;
-    history.goBack();
-    history.push({
+
+    push(`/user/${UserId}/albums`, {
       Username,
     });
   };
 
   render() {
     const {
-      photosuser: { photos },
+      location: {
+        state: {
+          title,
+        },
+      },
+      photosuser: {
+        photos,
+        isLoading,
+      },
     } = this.props;
 
     const { photoDataSelected } = this.state;
@@ -90,6 +108,9 @@ export class PhotosUser extends React.PureComponent {
         </Helmet>
 
         <TitlePage title="Photos" />
+        <TitleAlbumPhoto>
+          <span>{title}</span>
+        </TitleAlbumPhoto>
 
         <LinkBack>
           <Link to="/" className="urlPathHome" title="Home">
@@ -103,13 +124,20 @@ export class PhotosUser extends React.PureComponent {
             <Icons iconName="album" height="26" width="26" />
           </button>
         </LinkBack>
-        <ContentPhotos>
-          {photos &&
-            photos.map(photo => (
-              <Box key={photo.id} {...photo} openModal={this.openModal} />
-            ))}
-        </ContentPhotos>
-
+        {
+          (isLoading)
+          ?
+            <Loading />
+          :
+          <ContentPhotos>
+            {
+              photos &&
+              photos.map(photo => (
+                <Box key={photo.id} {...photo} openModal={this.openModal} />
+              ))
+            }
+          </ContentPhotos>
+        }
         {photoDataSelected && (
           <Modal
             show={this.state.isOpen}

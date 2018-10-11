@@ -34,4 +34,5 @@ export const Container = styled.div`
   min-height: 100%;
   padding: 0px 16px;
   flex-direction: column;
+  position: relative;
 `;
