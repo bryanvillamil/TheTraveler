@@ -10,7 +10,7 @@ import TextEllipsis from 'react-text-ellipsis';
 
 import Img from 'components/Img';
 import Icons from 'components/Icons';
-import Banner from './bg.jpg';
+import Banner from '../../../images/AlbumsUser/bg.jpg';
 import { Box } from './styledComponents';
 
 function BoxAlbum(props) {

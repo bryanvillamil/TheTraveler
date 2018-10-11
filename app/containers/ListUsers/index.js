@@ -38,6 +38,7 @@ export class ListUsers extends React.PureComponent {
     getTableData();
   }
 
+
   openModal = id => {
     const {
       listusers: { data },
